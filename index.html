@@ -1,0 +1,1218 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>달라 패션 스토어</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* Reset & Base */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Noto Sans KR", sans-serif;
+        line-height: 1.6;
+        background: #f8f9fa;
+      }
+
+      /* Grid System */
+      .container {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 15px;
+      }
+
+      .row {
+        display: flex;
+        flex-wrap: wrap;
+        margin: -15px;
+      }
+
+      /* Column classes */
+      .col-1 {
+        width: 8.33%;
+      }
+      .col-2 {
+        width: 16.66%;
+      }
+      .col-3 {
+        width: 25%;
+      }
+      .col-4 {
+        width: 33.33%;
+      }
+      .col-5 {
+        width: 41.66%;
+      }
+      .col-6 {
+        width: 50%;
+      }
+      .col-7 {
+        width: 58.33%;
+      }
+      .col-8 {
+        width: 66.66%;
+      }
+      .col-9 {
+        width: 75%;
+      }
+      .col-10 {
+        width: 83.33%;
+      }
+      .col-11 {
+        width: 91.66%;
+      }
+      .col-12 {
+        width: 100%;
+      }
+
+      [class*="col-"] {
+        padding: 15px;
+      }
+
+      /* Responsive columns */
+      @media (max-width: 992px) {
+        .col-md-1 {
+          width: 8.33%;
+        }
+        .col-md-2 {
+          width: 16.66%;
+        }
+        .col-md-3 {
+          width: 25%;
+        }
+        .col-md-4 {
+          width: 33.33%;
+        }
+        .col-md-6 {
+          width: 50%;
+        }
+        .col-md-12 {
+          width: 100%;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .col-sm-1 {
+          width: 8.33%;
+        }
+        .col-sm-2 {
+          width: 16.66%;
+        }
+        .col-sm-3 {
+          width: 25%;
+        }
+        .col-sm-4 {
+          width: 33.33%;
+        }
+        .col-sm-6 {
+          width: 50%;
+        }
+        .col-sm-12 {
+          width: 100%;
+        }
+      }
+
+      /* Header */
+      .header {
+        background: white;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        margin-bottom: 30px;
+      }
+
+      .header-top {
+        background: #f1f3f5;
+        padding: 8px 0;
+      }
+
+      .top-links {
+        text-align: right;
+      }
+
+      .top-links a {
+        color: #666;
+        text-decoration: none;
+        margin-left: 20px;
+        font-size: 14px;
+      }
+
+      .nav-main {
+        padding: 20px 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        font-size: 24px;
+        font-weight: bold;
+        text-decoration: none;
+        color: #333;
+      }
+
+      .nav-menu {
+        display: flex;
+        list-style: none;
+        gap: 30px;
+      }
+
+      .nav-menu a {
+        text-decoration: none;
+        color: #333;
+        font-weight: 500;
+        position: relative;
+      }
+
+      .nav-menu a::after {
+        content: "";
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: #ff6b6b;
+        transition: width 0.3s;
+      }
+
+      .nav-menu a:hover::after {
+        width: 100%;
+      }
+
+      /* Hero Section */
+      .hero {
+        background-image: linear-gradient(
+            rgba(0, 0, 0, 0.3),
+            rgba(0, 0, 0, 0.3)
+          ),
+          url("banner.jpg");
+        background-size: cover;
+        background-position: center;
+        padding: 100px 0;
+        text-align: center;
+        color: white;
+        border-radius: 10px;
+        margin-bottom: 40px;
+      }
+
+      .hero-content {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      .hero h1 {
+        font-size: 48px;
+        margin-bottom: 20px;
+        font-weight: 700;
+      }
+
+      .hero p {
+        font-size: 20px;
+        margin-bottom: 30px;
+      }
+
+      /* Category Menu */
+      .category-menu {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        margin-bottom: 40px;
+        flex-wrap: wrap;
+      }
+
+      .category-menu a {
+        padding: 10px 25px;
+        border: 1px solid #ddd;
+        border-radius: 25px;
+        text-decoration: none;
+        color: #333;
+        transition: all 0.3s;
+        background: white;
+      }
+
+      .category-menu a:hover {
+        background: #ff6b6b;
+        color: white;
+        border-color: #ff6b6b;
+      }
+
+      /* Product Card */
+      .product-card {
+        background: white;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        height: 100%;
+        transition: transform 0.3s;
+      }
+
+      .product-card:hover {
+        transform: translateY(-5px);
+      }
+
+      .product-image {
+        width: 100%;
+        height: 350px;
+        object-fit: cover;
+      }
+
+      .product-info {
+        padding: 20px;
+      }
+
+      .category-label {
+        color: #ff6b6b;
+        font-size: 14px;
+        margin-bottom: 8px;
+      }
+
+      .product-name {
+        font-size: 16px;
+        margin-bottom: 8px;
+        color: #333;
+      }
+
+      .product-price {
+        font-weight: bold;
+        color: #333;
+      }
+
+      /* Product Detail Modal */
+      .product-detail {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.75);
+        z-index: 1000;
+        overflow-y: auto;
+        padding: 20px;
+      }
+
+      .product-detail:target {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .detail-container {
+        background: white;
+        width: 100%;
+        max-width: 1000px;
+        border-radius: 10px;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .detail-content {
+        padding: 30px;
+      }
+
+      .detail-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+      }
+
+      .detail-image {
+        width: 100%;
+        border-radius: 8px;
+        overflow: hidden;
+      }
+
+      .detail-image img {
+        width: 100%;
+        height: 500px;
+        object-fit: cover;
+      }
+
+      .detail-info {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .detail-category {
+        color: #ff6b6b;
+        font-size: 14px;
+      }
+
+      .detail-title {
+        font-size: 24px;
+        color: #333;
+      }
+
+      .detail-price {
+        font-size: 22px;
+        font-weight: bold;
+        color: #333;
+      }
+
+      .detail-description {
+        color: #666;
+        line-height: 1.6;
+      }
+
+      .detail-sizes {
+        margin-top: 20px;
+      }
+
+      .size-buttons {
+        display: flex;
+        gap: 10px;
+        margin-top: 10px;
+      }
+
+      .size-btn {
+        width: 45px;
+        height: 45px;
+        border: 1px solid #ddd;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: white;
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+
+      .size-btn:hover {
+        background: #333;
+        color: white;
+        border-color: #333;
+      }
+
+      .add-to-cart {
+        width: 100%;
+        padding: 15px;
+        background: #ff6b6b;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background 0.3s;
+        margin-top: 20px;
+      }
+
+      .add-to-cart:hover {
+        background: #ff5252;
+      }
+
+      .close-detail {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        width: 30px;
+        height: 30px;
+        background: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        color: #333;
+        font-size: 20px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      /* Footer */
+      .footer {
+        background: white;
+        padding: 60px 0 30px;
+        margin-top: 60px;
+      }
+
+      .footer-title {
+        font-size: 18px;
+        margin-bottom: 20px;
+        color: #333;
+      }
+
+      .footer-links {
+        list-style: none;
+      }
+
+      .footer-links li {
+        margin-bottom: 10px;
+      }
+
+      .footer-links a {
+        color: #666;
+        text-decoration: none;
+        transition: color 0.3s;
+      }
+
+      .footer-links a:hover {
+        color: #333;
+      }
+
+      .footer-bottom {
+        text-align: center;
+        padding-top: 30px;
+        margin-top: 30px;
+        border-top: 1px solid #eee;
+        color: #666;
+      }
+
+      /* Pagination */
+      .pagination {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 40px;
+      }
+
+      .page-link {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        text-decoration: none;
+        color: #333;
+        transition: all 0.3s;
+      }
+
+      .page-link:hover,
+      .page-link.active {
+        background: #ff6b6b;
+        color: white;
+        border-color: #ff6b6b;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 992px) {
+        .detail-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .detail-image img {
+          height: 400px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .nav-menu {
+          gap: 15px;
+          font-size: 14px;
+        }
+
+        .hero h1 {
+          font-size: 24px;
+        }
+
+        .hero p {
+          font-size: 16px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .nav-menu {
+          gap: 10px;
+          font-size: 13px;
+        }
+
+        .detail-content {
+          padding: 15px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="header">
+      <div class="header-top">
+        <div class="container">
+          <div class="top-links">
+            <a href="#">로그인</a>
+            <a href="#">회원가입</a>
+            <a href="#">마이페이지</a>
+            <a href="#">장바구니</a>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <nav class="nav-main">
+          <a href="#" class="logo">DALIA</a>
+          <ul class="nav-menu">
+            <li><a href="#">신상품</a></li>
+            <li><a href="#">아우터</a></li>
+            <li><a href="#">상의</a></li>
+            <li><a href="#">하의</a></li>
+            <li><a href="#">원피스</a></li>
+            <li><a href="#">세일</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <div class="container">
+      <div class="hero">
+        <h1>러브, 윈터</h1>
+        <p>베스트 리뷰어 선정, 10000원 할인쿠폰 증정!</p>
+      </div>
+    </div>
+
+    <!-- Category Menu -->
+    <div class="container">
+      <div class="category-menu">
+        <a href="#">전체</a>
+        <a href="#">아우터</a>
+        <a href="#">상의</a>
+        <a href="#">하의</a>
+        <a href="#">원피스</a>
+        <a href="#">세일</a>
+      </div>
+    </div>
+
+    <!-- Products Grid -->
+    <div class="container">
+      <div class="row">
+        <!-- Product 1 -->
+        <div class="col-3 col-md-4 col-sm-6">
+          <a href="#product1" style="text-decoration: none; color: inherit">
+            <div class="product-card">
+              <img src="ao1.jpg" alt="Winter Coat" class="product-image" />
+              <div class="product-info">
+                <div class="category-label">아우터</div>
+                <h3 class="product-name">울 블렌드 코트</h3>
+                <p class="product-price">89,900원</p>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <!-- Product 2 -->
+        <div class="col-3 col-md-4 col-sm-6">
+          <a href="#product2" style="text-decoration: none; color: inherit">
+            <div class="product-card">
+              <img src="ao2.jpg" alt="Knit Sweater" class="product-image" />
+              <div class="product-info">
+                <div class="category-label">상의</div>
+                <h3 class="product-name">케이블 니트 스웨터</h3>
+                <p class="product-price">49,900원</p>
+              </div>
+            </div>
+          </a>
+        </div>
+        <!-- Product 3 -->
+        <div class="col-3 col-md-4 col-sm-6">
+          <a href="#product3" style="text-decoration: none; color: inherit">
+            <div class="product-card">
+              <img src="ao3.jpg" alt="Mini Skirt" class="product-image" />
+              <div class="product-info">
+                <div class="category-label">하의</div>
+                <h3 class="product-name">미니 스커트</h3>
+                <p class="product-price">39,900원</p>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <!-- Product 4 -->
+        <div class="col-3 col-md-4 col-sm-6">
+          <a href="#product4" style="text-decoration: none; color: inherit">
+            <div class="product-card">
+              <img src="ao4.jpg" alt="Cardigan" class="product-image" />
+              <div class="product-info">
+                <div class="category-label">상의</div>
+                <h3 class="product-name">캐시미어 가디건</h3>
+                <p class="product-price">59,900원</p>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <!-- Product 5 -->
+        <div class="col-3 col-md-4 col-sm-6">
+          <a href="#product5" style="text-decoration: none; color: inherit">
+            <div class="product-card">
+              <img src="ao5.jpg" alt="Long Coat" class="product-image" />
+              <div class="product-info">
+                <div class="category-label">아우터</div>
+                <h3 class="product-name">롱 코트</h3>
+                <p class="product-price">129,900원</p>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <!-- Product 6 -->
+        <div class="col-3 col-md-4 col-sm-6">
+          <a href="#product6" style="text-decoration: none; color: inherit">
+            <div class="product-card">
+              <img src="ao6.jpg" alt="Turtleneck" class="product-image" />
+              <div class="product-info">
+                <div class="category-label">상의</div>
+                <h3 class="product-name">터틀넥 스웨터</h3>
+                <p class="product-price">45,900원</p>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <!-- Product 7 -->
+        <div class="col-3 col-md-4 col-sm-6">
+          <a href="#product7" style="text-decoration: none; color: inherit">
+            <div class="product-card">
+              <img src="ao7.jpg" alt="Wide Pants" class="product-image" />
+              <div class="product-info">
+                <div class="category-label">하의</div>
+                <h3 class="product-name">와이드 팬츠</h3>
+                <p class="product-price">69,900원</p>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <!-- Product 8 -->
+        <div class="col-3 col-md-4 col-sm-6">
+          <a href="#product8" style="text-decoration: none; color: inherit">
+            <div class="product-card">
+              <img src="ao8.jpeg" alt="Denim Jacket" class="product-image" />
+              <div class="product-info">
+                <div class="category-label">아우터</div>
+                <h3 class="product-name">데님 자켓</h3>
+                <p class="product-price">79,900원</p>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <!-- Product 9 -->
+        <div class="col-3 col-md-4 col-sm-6">
+          <a href="#product9" style="text-decoration: none; color: inherit">
+            <div class="product-card">
+              <img src="ao9.jpeg" alt="Dress" class="product-image" />
+              <div class="product-info">
+                <div class="category-label">원피스</div>
+                <h3 class="product-name">플라워 원피스</h3>
+                <p class="product-price">89,900원</p>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <!-- Product 10 -->
+        <div class="col-3 col-md-4 col-sm-6">
+          <a href="#product10" style="text-decoration: none; color: inherit">
+            <div class="product-card">
+              <img src="ao10.jpeg" alt="Leather Jacket" class="product-image" />
+              <div class="product-info">
+                <div class="category-label">아우터</div>
+                <h3 class="product-name">레더 자켓</h3>
+                <p class="product-price">149,900원</p>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <!-- Product 11 -->
+        <div class="col-3 col-md-4 col-sm-6">
+          <a href="#product11" style="text-decoration: none; color: inherit">
+            <div class="product-card">
+              <img src="ao11.jpeg" alt="Wool Sweater" class="product-image" />
+              <div class="product-info">
+                <div class="category-label">상의</div>
+                <h3 class="product-name">울 스웨터</h3>
+                <p class="product-price">89,900원</p>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <!-- Product 12 -->
+        <div class="col-3 col-md-4 col-sm-6">
+          <a href="#product12" style="text-decoration: none; color: inherit">
+            <div class="product-card">
+              <img src="ao12.jpeg" alt="Long Dress" class="product-image" />
+              <div class="product-info">
+                <div class="category-label">원피스</div>
+                <h3 class="product-name">롱 드레스</h3>
+                <p class="product-price">129,900원</p>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Pagination -->
+      <div class="pagination">
+        <a href="#" class="page-link active">1</a>
+        <a href="#" class="page-link">2</a>
+        <a href="#" class="page-link">3</a>
+        <a href="#" class="page-link">4</a>
+        <a href="#" class="page-link">5</a>
+      </div>
+    </div>
+
+    <!-- Product Detail Modals -->
+    <!-- Product 1 Detail -->
+    <div class="product-detail" id="product1">
+      <div class="detail-container">
+        <a href="#" class="close-detail">&times;</a>
+        <div class="detail-content">
+          <div class="detail-grid">
+            <div class="detail-image">
+              <img src="ao1.jpg" alt="Winter Coat" />
+            </div>
+            <div class="detail-info">
+              <div class="detail-category">아우터</div>
+              <h2 class="detail-title">울 블렌드 코트</h2>
+              <p class="detail-price">89,900원</p>
+              <div class="detail-description">
+                포근한 울 블렌드 소재의 겨울 코트입니다. 부드러운 핑크 컬러로
+                여성스러운 무드를 연출할 수 있습니다. 고급스러운 소재와 세련된
+                디자인으로 데일리 룩과 오피스 룩 모두에 잘 어울립니다.
+              </div>
+              <div class="detail-sizes">
+                <h3>사이즈</h3>
+                <div class="size-buttons">
+                  <button class="size-btn">S</button>
+                  <button class="size-btn">M</button>
+                  <button class="size-btn">L</button>
+                  <button class="size-btn">XL</button>
+                </div>
+              </div>
+              <button class="add-to-cart">장바구니 담기</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal for Product 2 -->
+    <div class="product-detail" id="product2">
+      <div class="detail-container">
+        <a href="#" class="close-detail">&times;</a>
+        <div class="detail-content">
+          <div class="detail-grid">
+            <div class="detail-image">
+              <img src="ao2.jpg" alt="Knit Sweater" />
+            </div>
+            <div class="detail-info">
+              <div class="detail-category">상의</div>
+              <h2 class="detail-title">케이블 니트 스웨터</h2>
+              <p class="detail-price">49,900원</p>
+              <div class="detail-description">
+                포근한 케이블 니트 스웨터입니다. 클래식한 디자인과 부드러운
+                소재로 편안한 착용감을 제공합니다. 다양한 하의와 매치하기 좋은
+                베이직한 아이템입니다.
+              </div>
+              <div class="detail-sizes">
+                <h3>사이즈</h3>
+                <div class="size-buttons">
+                  <button class="size-btn">S</button>
+                  <button class="size-btn">M</button>
+                  <button class="size-btn">L</button>
+                </div>
+              </div>
+              <button class="add-to-cart">장바구니 담기</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal for Product 3 -->
+    <div class="product-detail" id="product3">
+      <div class="detail-container">
+        <a href="#" class="close-detail">&times;</a>
+        <div class="detail-content">
+          <div class="detail-grid">
+            <div class="detail-image">
+              <img src="ao3.jpg" alt="Mini Skirt" />
+            </div>
+            <div class="detail-info">
+              <div class="detail-category">하의</div>
+              <h2 class="detail-title">미니 스커트</h2>
+              <p class="detail-price">39,900원</p>
+              <div class="detail-description">
+                세련된 미니 스커트입니다. 슬림한 실루엣과 모던한 디자인으로
+                다양한 스타일링이 가능합니다. 고급스러운 소재감으로 편안한
+                착용감을 제공합니다.
+              </div>
+              <div class="detail-sizes">
+                <h3>사이즈</h3>
+                <div class="size-buttons">
+                  <button class="size-btn">S</button>
+                  <button class="size-btn">M</button>
+                  <button class="size-btn">L</button>
+                </div>
+              </div>
+              <button class="add-to-cart">장바구니 담기</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal for Product 4 -->
+    <div class="product-detail" id="product4">
+      <div class="detail-container">
+        <a href="#" class="close-detail">&times;</a>
+        <div class="detail-content">
+          <div class="detail-grid">
+            <div class="detail-image">
+              <img src="ao4.jpg" alt="Cardigan" />
+            </div>
+            <div class="detail-info">
+              <div class="detail-category">상의</div>
+              <h2 class="detail-title">캐시미어 가디건</h2>
+              <p class="detail-price">59,900원</p>
+              <div class="detail-description">
+                고급스러운 캐시미어 혼방 가디건입니다. 부드러운 터치감과
+                보온성이 뛰어나며, 클래식한 디자인으로 다양한 스타일링이
+                가능합니다.
+              </div>
+              <div class="detail-sizes">
+                <h3>사이즈</h3>
+                <div class="size-buttons">
+                  <button class="size-btn">S</button>
+                  <button class="size-btn">M</button>
+                  <button class="size-btn">L</button>
+                  <button class="size-btn">XL</button>
+                </div>
+              </div>
+              <button class="add-to-cart">장바구니 담기</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal for Product 5 -->
+    <div class="product-detail" id="product5">
+      <div class="detail-container">
+        <a href="#" class="close-detail">&times;</a>
+        <div class="detail-content">
+          <div class="detail-grid">
+            <div class="detail-image">
+              <img src="ao5.jpg" alt="Long Coat" />
+            </div>
+            <div class="detail-info">
+              <div class="detail-category">아우터</div>
+              <h2 class="detail-title">롱 코트</h2>
+              <p class="detail-price">129,900원</p>
+              <div class="detail-description">
+                고급스러운 롱 코트입니다. 세련된 실루엣과 프리미엄 울 소재로
+                제작되어 보온성과 스타일을 모두 갖췄습니다. 데일리룩부터 포멀한
+                스타일까지 다양하게 활용 가능합니다.
+              </div>
+              <div class="detail-sizes">
+                <h3>사이즈</h3>
+                <div class="size-buttons">
+                  <button class="size-btn">S</button>
+                  <button class="size-btn">M</button>
+                  <button class="size-btn">L</button>
+                  <button class="size-btn">XL</button>
+                </div>
+              </div>
+              <button class="add-to-cart">장바구니 담기</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal for Product 6 -->
+    <div class="product-detail" id="product6">
+      <div class="detail-container">
+        <a href="#" class="close-detail">&times;</a>
+        <div class="detail-content">
+          <div class="detail-grid">
+            <div class="detail-image">
+              <img src="ao6.jpg" alt="Turtleneck" />
+            </div>
+            <div class="detail-info">
+              <div class="detail-category">상의</div>
+              <h2 class="detail-title">터틀넥 스웨터</h2>
+              <p class="detail-price">45,900원</p>
+              <div class="detail-description">
+                부드러운 터치감의 터틀넥 스웨터입니다. 보온성이 뛰어나며
+                베이직한 디자인으로 다양한 코디가 가능합니다. 데일리하게
+                착용하기 좋은 아이템입니다.
+              </div>
+              <div class="detail-sizes">
+                <h3>사이즈</h3>
+                <div class="size-buttons">
+                  <button class="size-btn">S</button>
+                  <button class="size-btn">M</button>
+                  <button class="size-btn">L</button>
+                </div>
+              </div>
+              <button class="add-to-cart">장바구니 담기</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal for Product 7 -->
+    <div class="product-detail" id="product7">
+      <div class="detail-container">
+        <a href="#" class="close-detail">&times;</a>
+        <div class="detail-content">
+          <div class="detail-grid">
+            <div class="detail-image">
+              <img src="ao7.jpg" alt="Wide Pants" />
+            </div>
+            <div class="detail-info">
+              <div class="detail-category">하의</div>
+              <h2 class="detail-title">와이드 팬츠</h2>
+              <p class="detail-price">69,900원</p>
+              <div class="detail-description">
+                트렌디한 와이드 팬츠입니다. 하이웨스트 디자인으로 다리가 길어
+                보이는 효과가 있으며, 편안한 착용감을 제공합니다. 다양한 상의와
+                매치하기 좋습니다.
+              </div>
+              <div class="detail-sizes">
+                <h3>사이즈</h3>
+                <div class="size-buttons">
+                  <button class="size-btn">S</button>
+                  <button class="size-btn">M</button>
+                  <button class="size-btn">L</button>
+                </div>
+              </div>
+              <button class="add-to-cart">장바구니 담기</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal for Product 8 -->
+    <div class="product-detail" id="product8">
+      <div class="detail-container">
+        <a href="#" class="close-detail">&times;</a>
+        <div class="detail-content">
+          <div class="detail-grid">
+            <div class="detail-image">
+              <img src="ao8.jpeg" alt="Denim Jacket" />
+            </div>
+            <div class="detail-info">
+              <div class="detail-category">아우터</div>
+              <h2 class="detail-title">데님 자켓</h2>
+              <p class="detail-price">79,900원</p>
+              <div class="detail-description">
+                클래식한 데님 자켓입니다. 모던한 핏과 워싱으로 트렌디하면서도
+                시즌리스하게 착용 가능합니다. 캐주얼한 스타일링에 완벽한
+                아이템입니다.
+              </div>
+              <div class="detail-sizes">
+                <h3>사이즈</h3>
+                <div class="size-buttons">
+                  <button class="size-btn">S</button>
+                  <button class="size-btn">M</button>
+                  <button class="size-btn">L</button>
+                  <button class="size-btn">XL</button>
+                </div>
+              </div>
+              <button class="add-to-cart">장바구니 담기</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal for Product 9 -->
+    <div class="product-detail" id="product9">
+      <div class="detail-container">
+        <a href="#" class="close-detail">&times;</a>
+        <div class="detail-content">
+          <div class="detail-grid">
+            <div class="detail-image">
+              <img src="ao9.jpeg" alt="Dress" />
+            </div>
+            <div class="detail-info">
+              <div class="detail-category">원피스</div>
+              <h2 class="detail-title">플라워 원피스</h2>
+              <p class="detail-price">89,900원</p>
+              <div class="detail-description">
+                여성스러운 플라워 패턴의 원피스입니다. 가벼운 소재감으로
+                편안하게 착용할 수 있으며, 플레어 라인으로 체형 커버 효과가
+                있습니다.
+              </div>
+              <div class="detail-sizes">
+                <h3>사이즈</h3>
+                <div class="size-buttons">
+                  <button class="size-btn">S</button>
+                  <button class="size-btn">M</button>
+                  <button class="size-btn">L</button>
+                </div>
+              </div>
+              <button class="add-to-cart">장바구니 담기</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal for Product 10 -->
+    <div class="product-detail" id="product10">
+      <div class="detail-container">
+        <a href="#" class="close-detail">&times;</a>
+        <div class="detail-content">
+          <div class="detail-grid">
+            <div class="detail-image">
+              <img src="ao10.jpeg" alt="Leather Jacket" />
+            </div>
+            <div class="detail-info">
+              <div class="detail-category">아우터</div>
+              <h2 class="detail-title">레더 자켓</h2>
+              <p class="detail-price">149,900원</p>
+              <div class="detail-description">
+                클래식한 디자인의 레더 자켓입니다. 고급 페이크 레더 소재를
+                사용하여 실제 가죽과 같은 퀄리티를 자랑하며, 트렌디한 디자인으로
+                다양한 스타일링이 가능합니다.
+              </div>
+              <div class="detail-sizes">
+                <h3>사이즈</h3>
+                <div class="size-buttons">
+                  <button class="size-btn">S</button>
+                  <button class="size-btn">M</button>
+                  <button class="size-btn">L</button>
+                </div>
+              </div>
+              <button class="add-to-cart">장바구니 담기</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal for Product 11 -->
+    <div class="product-detail" id="product11">
+      <div class="detail-container">
+        <a href="#" class="close-detail">&times;</a>
+        <div class="detail-content">
+          <div class="detail-grid">
+            <div class="detail-image">
+              <img src="ao11.jpeg" alt="Wool Sweater" />
+            </div>
+            <div class="detail-info">
+              <div class="detail-category">상의</div>
+              <h2 class="detail-title">울 스웨터</h2>
+              <p class="detail-price">89,900원</p>
+              <div class="detail-description">
+                프리미엄 울 혼방 소재로 제작된 고급스러운 스웨터입니다. 부드러운
+                터치감과 뛰어난 보온성을 자랑하며, 베이직한 디자인으로 다양한
+                스타일링이 가능합니다.
+              </div>
+              <div class="detail-sizes">
+                <h3>사이즈</h3>
+                <div class="size-buttons">
+                  <button class="size-btn">S</button>
+                  <button class="size-btn">M</button>
+                  <button class="size-btn">L</button>
+                </div>
+              </div>
+              <button class="add-to-cart">장바구니 담기</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal for Product 12 -->
+    <div class="product-detail" id="product12">
+      <div class="detail-container">
+        <a href="#" class="close-detail">&times;</a>
+        <div class="detail-content">
+          <div class="detail-grid">
+            <div class="detail-image">
+              <img src="ao12.jpeg" alt="Long Dress" />
+            </div>
+            <div class="detail-info">
+              <div class="detail-category">원피스</div>
+              <h2 class="detail-title">롱 드레스</h2>
+              <p class="detail-price">129,900원</p>
+              <div class="detail-description">
+                우아한 실루엣의 롱 드레스입니다. 고급스러운 소재와 세련된
+                디자인으로 특별한 날에 착용하기 좋으며, 계절에 관계없이
+                스타일리시하게 연출할 수 있습니다.
+              </div>
+              <div class="detail-sizes">
+                <h3>사이즈</h3>
+                <div class="size-buttons">
+                  <button class="size-btn">S</button>
+                  <button class="size-btn">M</button>
+                  <button class="size-btn">L</button>
+                </div>
+              </div>
+              <button class="add-to-cart">장바구니 담기</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-3 col-md-6 col-sm-12">
+            <h3 class="footer-title">고객센터</h3>
+            <ul class="footer-links">
+              <li>전화: 1234-5678</li>
+              <li>이메일: support@dalia.com</li>
+              <li>운영시간: 평일 10:00 - 18:00</li>
+              <li>점심시간: 12:00 - 13:00</li>
+              <li>토/일/공휴일 휴무</li>
+            </ul>
+          </div>
+          <div class="col-3 col-md-6 col-sm-12">
+            <h3 class="footer-title">쇼핑안내</h3>
+            <ul class="footer-links">
+              <li><a href="#">주문안내</a></li>
+              <li><a href="#">배송안내</a></li>
+              <li><a href="#">반품/교환안내</a></li>
+              <li><a href="#">취소/환불안내</a></li>
+              <li><a href="#">자주 묻는 질문</a></li>
+            </ul>
+          </div>
+          <div class="col-3 col-md-6 col-sm-12">
+            <h3 class="footer-title">회사소개</h3>
+            <ul class="footer-links">
+              <li><a href="#">회사소개</a></li>
+              <li><a href="#">개인정보처리방침</a></li>
+              <li><a href="#">이용약관</a></li>
+              <li><a href="#">제휴문의</a></li>
+              <li><a href="#">채용정보</a></li>
+            </ul>
+          </div>
+          <div class="col-3 col-md-6 col-sm-12">
+            <h3 class="footer-title">팔로우</h3>
+            <ul class="footer-links">
+              <li><a href="#">Instagram</a></li>
+              <li><a href="#">Facebook</a></li>
+              <li><a href="#">Blog</a></li>
+              <li><a href="#">YouTube</a></li>
+              <li><a href="#">Pinterest</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>© 2024 Dalia. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
